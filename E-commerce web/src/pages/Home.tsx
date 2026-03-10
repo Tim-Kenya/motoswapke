@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { User as AuthUser } from "@auth0/auth0-react";
 import { 
   Search, MapPin, DollarSign, ChevronRight, Bike, ShieldCheck, 
   Zap, Heart, Calendar, Gauge, ChevronDown, Star, Download, 
   Mail, Phone, Facebook, Twitter, Instagram, Users, Briefcase, 
-  ArrowRight, Clock, User, Tag
+  ArrowRight, Clock, User as UserIcon, Tag
 } from "lucide-react";
+
+interface HomeProps {
+  isAuthenticated: boolean;
+  user: AuthUser | undefined;
+  onLogin: () => void;
+  onSignup: () => void;
+  onLogout: () => void;
+}
 
 // --- Mock Data ---
 const featuredBikes = [
@@ -155,7 +164,7 @@ const blogPosts = [
   }
 ];
 
-function Home() {
+function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [bikes, setBikes] = useState(featuredBikes);
   const [searchQuery, setSearchQuery] = useState('');
@@ -193,10 +202,35 @@ function Home() {
             </div>
             
             <div className="flex items-center gap-3">
-              <button className="hidden md:flex items-center gap-2 text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-100 transition">
-                <span className="text-sm font-medium">Log in</span>
-              </button>
-              <button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+              {isAuthenticated ? (
+                <>
+                  <span className="text-sm text-gray-600 hidden md:block">
+                    {user?.name || user?.email}
+                  </span>
+                  <button 
+                    onClick={onLogout}
+                    className="hidden md:flex items-center gap-2 text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-100 transition"
+                  >
+                    <span className="text-sm font-medium">Log out</span>
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button 
+                    onClick={onLogin}
+                    className="hidden md:flex items-center gap-2 text-gray-600 hover:text-gray-900 px-3 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                  >
+                    <span className="text-sm font-medium">Log in</span>
+                  </button>
+                  <button 
+                    onClick={onSignup}
+                    className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer"
+                  >
+                    Sign Up
+                  </button>
+                </>
+              )}
+              <button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer">
                 Sell Your Bike
               </button>
             </div>
@@ -629,7 +663,7 @@ function Home() {
               <p className="text-gray-600 mb-4 line-clamp-2">{blogPosts[0].excerpt}</p>
               <div className="flex items-center gap-4 text-sm text-gray-500">
                 <span className="flex items-center gap-1">
-                  <User className="w-4 h-4" /> {blogPosts[0].author}
+                  <UserIcon className="w-4 h-4" /> {blogPosts[0].author}
                 </span>
                 <span className="flex items-center gap-1">
                   <Calendar className="w-4 h-4" /> {blogPosts[0].date}
