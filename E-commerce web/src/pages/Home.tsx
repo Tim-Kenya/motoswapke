@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { User as AuthUser } from "@auth0/auth0-react";
 import { 
-  Search, MapPin, DollarSign, ChevronRight, Bike, ShieldCheck, 
+  Search, MapPin, DollarSign, ChevronRight, CarFront, ShieldCheck, 
   Zap, Heart, Calendar, Gauge, ChevronDown, Star, Download, 
   Mail, Phone, Facebook, Twitter, Instagram, Users, Briefcase, 
-  ArrowRight, Clock, User as UserIcon, Tag
+  ArrowRight, Clock, User as UserIcon, Tag,
+  CarIcon
 } from "lucide-react";
 
 interface HomeProps {
@@ -16,7 +17,7 @@ interface HomeProps {
 }
 
 // --- Mock Data ---
-const featuredBikes = [
+const featuredVehicles = [
   {
     id: 1,
     title: "Yamaha MT-07 (2021)",
@@ -134,8 +135,8 @@ const openJobs = [
 const blogPosts = [
   {
     id: 1,
-    title: "5 Things to Check Before Buying a Used Motorcycle in Kenya",
-    excerpt: "Avoid costly mistakes with our expert checklist for inspecting second-hand bikes.",
+    title: "5 Things to Check Before Buying a Used Vehicle in Kenya",
+    excerpt: "Avoid costly mistakes with our expert checklist for inspecting second-hand vehicles.",
     image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800",
     category: "Buying Tips",
     author: "David Kamau",
@@ -144,8 +145,8 @@ const blogPosts = [
   },
   {
     id: 2,
-    title: "How to Price Your Motorcycle for a Quick Sale in Nairobi",
-    excerpt: "Data-driven strategies to attract serious buyers without undervaluing your bike.",
+    title: "How to Price Your Vehicle for a Quick Sale in Nairobi",
+    excerpt: "Data-driven strategies to attract serious buyers without undervaluing your vehicle.",
     image: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=800",
     category: "Selling Guide",
     author: "Sarah Wanjiku",
@@ -154,8 +155,8 @@ const blogPosts = [
   },
   {
     id: 3,
-    title: "Bajaj Boxer vs. TVS Raider: Which Delivery Bike Wins in 2026?",
-    excerpt: "We compare fuel efficiency, maintenance costs, and resale value for Kenya's top delivery bikes.",
+    title: "Bajaj Boxer vs. TVS Raider: Which Delivery Vehicle Wins in 2026?",
+    excerpt: "We compare fuel efficiency, maintenance costs, and resale value for Kenya's top delivery vehicles.",
     image: "https://images.unsplash.com/photo-1622185135505-2d795043906a?auto=format&fit=crop&q=80&w=800",
     category: "Industry News",
     author: "James Ochieng",
@@ -166,13 +167,13 @@ const blogPosts = [
 
 function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps) {
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [bikes, setBikes] = useState(featuredBikes);
+  const [vehicles, setVehicles] = useState(featuredVehicles);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('All');
 
   const toggleLike = (id: number) => {
-    setBikes(bikes.map(bike => 
-      bike.id === id ? { ...bike, liked: !bike.liked } : bike
+    setVehicles(vehicles.map(vehicle => 
+      vehicle.id === id ? { ...vehicle, liked: !vehicle.liked } : vehicle
     ));
   };
 
@@ -185,7 +186,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
           <div className="flex justify-between h-16 items-center">
             <div className="flex items-center gap-2 cursor-pointer">
               <div className="bg-orange-600 p-2 rounded-lg">
-                <Bike className="h-6 w-6 text-white" />
+                <CarFront className="h-6 w-6 text-white" />
               </div>
               <span className="text-2xl font-bold text-gray-900">
                 MotoSwap<span className="text-orange-600">KE</span>
@@ -231,7 +232,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
                 </>
               )}
               <button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 cursor-pointer">
-                Sell Your Bike
+                Sell Your Vehicle
               </button>
             </div>
           </div>
@@ -243,7 +244,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1558980664-2506fca6bfc2?auto=format&fit=crop&q=80&w=1600" 
-            alt="Motorcycle Background" 
+            alt="Vehicle Background" 
             className="w-full h-full object-cover opacity-25"
             loading="lazy"
           />
@@ -253,14 +254,14 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-orange-600/20 border border-orange-500/30 rounded-full px-4 py-1.5 mb-6">
             <Zap className="w-4 h-4 text-orange-400" />
-            <span className="text-orange-300 text-sm font-medium">Kenya's #1 Bike Marketplace</span>
+            <span className="text-orange-300 text-sm font-medium">Kenya's #1 Vehicle Marketplace</span>
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
             Find Your Perfect Ride in <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600">Kenya</span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
-            The safest, fastest way to buy and sell motorbikes. From delivery bikes to superbikes, MotoSwap KE connects you with trusted sellers nationwide.
+            The safest, fastest way to buy and sell vehicles. From delivery vehicles to supervehicles, MotoSwap KE connects you with trusted sellers nationwide.
           </p>
 
           {/* Search Bar */}
@@ -270,7 +271,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
                 <Search className="text-gray-400 w-5 h-5 mr-3 flex-shrink-0" />
                 <input 
                   type="text" 
-                  placeholder="Search bikes (Yamaha, Honda, Boxer...)" 
+                  placeholder="Search vehicles (Yamaha, Honda, Boxer...)" 
                   className="w-full outline-none text-gray-700 bg-transparent placeholder-gray-400"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -350,7 +351,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             {[
-              { label: "Bikes Sold", value: "10,000+" },
+              { label: "Vehicles Sold", value: "10,000+" },
               { label: "Happy Riders", value: "8,500+" },
               { label: "Verified Sellers", value: "99.2%" },
               { label: "Avg. Sale Time", value: "4.2 days" }
@@ -369,7 +370,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">Why Choose MotoSwap KE?</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">We make buying and selling motorbikes safe, simple, and fast.</p>
+            <p className="text-gray-500 max-w-2xl mx-auto">We make buying and selling vehicles safe, simple, and fast.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -413,7 +414,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">Featured Motorbikes</h2>
+              <h2 className="text-3xl font-bold text-gray-900">Featured Vehicles</h2>
               <p className="text-gray-500 mt-2">Hand-picked deals updated daily</p>
             </div>
             <a href="#" className="text-orange-600 font-semibold hover:text-orange-700 flex items-center gap-1 transition group">
@@ -422,31 +423,31 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {bikes.map((bike) => (
+            {vehicles.map((vehicle) => (
               <div 
-                key={bike.id} 
+                key={vehicle.id} 
                 className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 group cursor-pointer transform hover:-translate-y-1"
               >
                 <div className="relative h-48 overflow-hidden bg-gray-100">
                   <img 
-                    src={bike.image} 
-                    alt={bike.title} 
+                    src={vehicle.image} 
+                    alt={vehicle.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                   <span className={`absolute top-3 left-3 text-xs font-bold px-3 py-1 rounded-full ${
-                    bike.condition === 'New' ? 'bg-green-500 text-white' : 'bg-blue-500 text-white'
+                    vehicle.condition === 'New' ? 'bg-green-500 text-white' : 'bg-blue-500 text-white'
                   }`}>
-                    {bike.condition}
+                    {vehicle.condition}
                   </span>
                   <button 
-                    onClick={(e) => { e.stopPropagation(); toggleLike(bike.id); }}
+                    onClick={(e) => { e.stopPropagation(); toggleLike(vehicle.id); }}
                     className={`absolute top-3 right-3 p-2 rounded-full shadow-md transition-all ${
-                      bike.liked ? 'bg-red-500 text-white' : 'bg-white/90 hover:bg-white text-gray-600 hover:text-red-500'
+                      vehicle.liked ? 'bg-red-500 text-white' : 'bg-white/90 hover:bg-white text-gray-600 hover:text-red-500'
                     }`}
-                    aria-label={bike.liked ? "Remove from wishlist" : "Add to wishlist"}
+                    aria-label={vehicle.liked ? "Remove from wishlist" : "Add to wishlist"}
                   >
-                    <Heart className={`w-4 h-4 ${bike.liked ? 'fill-current' : ''}`} />
+                    <Heart className={`w-4 h-4 ${vehicle.liked ? 'fill-current' : ''}`} />
                   </button>
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                     <button className="bg-white text-gray-900 px-4 py-2 rounded-lg font-medium text-sm hover:bg-gray-100 transition">
@@ -455,20 +456,20 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
                   </div>
                 </div>
                 <div className="p-5">
-                  <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-1">{bike.title}</h3>
-                  <div className="text-orange-600 font-bold text-xl mb-3">{bike.price}</div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1 line-clamp-1">{vehicle.title}</h3>
+                  <div className="text-orange-600 font-bold text-xl mb-3">{vehicle.price}</div>
                   <div className="space-y-2 mb-4">
                     <div className="flex items-center text-gray-500 text-sm">
                       <MapPin className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span className="truncate">{bike.location}</span>
+                      <span className="truncate">{vehicle.location}</span>
                     </div>
                     <div className="flex items-center text-gray-500 text-sm">
                       <Gauge className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span>{bike.mileage}</span>
+                      <span>{vehicle.mileage}</span>
                     </div>
                     <div className="flex items-center text-gray-500 text-sm">
                       <Calendar className="w-4 h-4 mr-2 flex-shrink-0" />
-                      <span>{bike.year} • {bike.transmission}</span>
+                      <span>{vehicle.year} • {vehicle.transmission}</span>
                     </div>
                   </div>
                   <button className="w-full bg-gray-100 hover:bg-orange-600 text-gray-700 hover:text-white py-2.5 rounded-xl font-medium transition-colors">
@@ -481,7 +482,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
           
           <div className="text-center mt-10">
             <button className="inline-flex items-center gap-2 bg-white border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-3 rounded-xl font-semibold transition-all">
-              Load More Bikes <ChevronDown className="w-4 h-4" />
+              Load More Vehicles <ChevronDown className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -497,10 +498,10 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
                 <span className="text-sm font-medium">About Us</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Powering Kenya's <span className="text-orange-600">Motorcycle Revolution</span>
+                Powering Kenya's <span className="text-orange-600">Vehicle Revolution</span>
               </h2>
               <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Founded in 2023, MotoSwap KE was born from a simple idea: make buying and selling motorbikes in Kenya safe, simple, and accessible for everyone.
+                Founded in 2023, MotoSwap KE was born from a simple idea: make buying and selling vehicles in Kenya safe, simple, and accessible for everyone.
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Today, we're proud to connect thousands of buyers and sellers across Nairobi, Mombasa, Kisumu, and beyond. But we're just getting started.
@@ -508,7 +509,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
               
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
-                  { value: "10K+", label: "Bikes Listed" },
+                  { value: "10K+", label: "Vehicles Listed" },
                   { value: "47", label: "Counties" },
                   { value: "98%", label: "Satisfaction" }
                 ].map((stat, i) => (
@@ -571,7 +572,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
               Build the Future of <span className="text-orange-600">Mobility in Kenya</span>
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              We're looking for passionate riders, builders, and thinkers to help us transform how Kenya buys and sells motorbikes.
+              We're looking for passionate riders, builders, and thinkers to help us transform how Kenya buys and sells vehicles.
             </p>
           </div>
 
@@ -604,7 +605,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
             {[
               { icon: Heart, title: "Health Coverage", desc: "Medical insurance for you & family" },
               { icon: Clock, title: "Flexible Work", desc: "Remote-friendly & flexible hours" },
-              { icon: Bike, title: "Bike Allowance", desc: "Annual stipend for maintenance" }
+              { icon: CarFront, title: "Vehicle Allowance", desc: "Annual stipend for maintenance" }
             ].map((benefit, i) => (
               <div key={i} className="flex items-start gap-4 p-4 bg-white rounded-xl border border-gray-100">
                 <div className="bg-orange-100 p-3 rounded-lg flex-shrink-0">
@@ -636,7 +637,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
                 <span className="text-sm font-medium">Blog</span>
               </div>
               <h2 className="text-3xl font-bold text-gray-900">Tips, Stories & <span className="text-orange-600">Industry News</span></h2>
-              <p className="text-gray-500 mt-2">Expert advice from Kenya's motorcycle community</p>
+              <p className="text-gray-500 mt-2">Expert advice from Kenya's vehicle community</p>
             </div>
             <a href="#blog" className="text-orange-600 font-semibold hover:text-orange-700 flex items-center gap-1 transition group">
               View all articles <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition" />
@@ -706,14 +707,14 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold text-gray-900 mb-3">How MotoSwap KE Works</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">Selling or buying your dream bike has never been easier.</p>
+            <p className="text-gray-500 max-w-2xl mx-auto">Selling or buying your dream vehicle has never been easier.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             <div className="hidden md:block absolute top-12 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-orange-200 via-orange-400 to-orange-200"></div>
             
             {[
-              { step: "1", title: "List or Browse", desc: "Create a free listing or browse thousands of verified bikes." },
+              { step: "1", title: "List or Browse", desc: "Create a free listing or browse thousands of verified vehicles." },
               { step: "2", title: "Connect Safely", desc: "Chat with buyers/sellers through our secure messaging." },
               { step: "3", title: "Complete Deal", desc: "Meet up, inspect, and finalize with confidence." }
             ].map((item, i) => (
@@ -797,8 +798,8 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
       <section className="py-16 bg-white border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <Mail className="w-10 h-10 text-orange-600 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-gray-900 mb-3">Get Bike Alerts</h3>
-          <p className="text-gray-600 mb-6">Be the first to know when new bikes matching your criteria are listed.</p>
+          <h3 className="text-2xl font-bold text-gray-900 mb-3">Get Vehicle Alerts</h3>
+          <p className="text-gray-600 mb-6">Be the first to know when new vehicles matching your criteria are listed.</p>
           <form className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input 
               type="email" 
@@ -821,11 +822,11 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
             <div>
               <div className="flex items-center gap-2 mb-5 text-white">
                 <div className="bg-orange-600 p-2 rounded-lg">
-                  <Bike className="h-5 w-5 text-white" />
+                  <CarFront className="h-5 w-5 text-white" />
                 </div>
                 <span className="text-xl font-bold">MotoSwap<span className="text-orange-600">KE</span></span>
               </div>
-              <p className="text-sm mb-5 leading-relaxed">Kenya's most trusted marketplace for buying and selling motorbikes. Safe, fast, and free to use.</p>
+              <p className="text-sm mb-5 leading-relaxed">Kenya's most trusted marketplace for buying and selling vehicles. Safe, fast, and free to use.</p>
               <div className="flex gap-3">
                 {[Facebook, Twitter, Instagram].map((Icon, i) => (
                   <a key={i} href="#" className="bg-gray-800 hover:bg-orange-600 p-2.5 rounded-lg transition group">
@@ -838,7 +839,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
             {[
               {
                 title: "Marketplace",
-                links: ["Browse All Bikes", "Sell Your Bike", "Price Guide", "Financing Options"]
+                links: ["Browse All Vehicles", "Sell Your Vehicle", "Price Guide", "Financing Options"]
               },
               {
                 title: "Support",
@@ -878,7 +879,7 @@ function Home({ isAuthenticated, user, onLogin, onSignup, onLogout }: HomeProps)
       {/* --- Sticky Mobile CTA --- */}
       <div className="fixed bottom-0 left-0 right-0 md:hidden bg-white border-t border-gray-200 p-3 z-50 shadow-lg">
         <button className="w-full bg-gradient-to-r from-orange-600 to-orange-500 text-white py-3 rounded-xl font-bold shadow-md">
-          Sell Your Bike - It's Free
+          Sell Your Vehicle - It's Free
         </button>
       </div>
     </div>
