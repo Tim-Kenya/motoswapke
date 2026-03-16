@@ -2,9 +2,9 @@ import React from "react";
 import { User as AuthUser } from "@auth0/auth0-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import CareersSection from "../components/CareersSection";
+import Testimonials from "../components/Testimonials";
 
-interface CareersProps {
+interface ReviewsProps {
   isAuthenticated: boolean;
   user: AuthUser | undefined;
   onLogin: () => void;
@@ -12,7 +12,7 @@ interface CareersProps {
   onLogout: () => void;
 }
 
-function Careers({ isAuthenticated, user, onLogin, onSignup, onLogout }: CareersProps) {
+function Reviews({ isAuthenticated, user, onLogin, onSignup, onLogout }: ReviewsProps) {
   return (
     <div className="font-sans text-gray-800 bg-gray-50 min-h-screen">
       <Navbar 
@@ -23,12 +23,12 @@ function Careers({ isAuthenticated, user, onLogin, onSignup, onLogout }: Careers
         onLogout={onLogout}
       />
 
-      {/* --- Careers --- */}
-      <CareersSection />
+      {/* --- Testimonials --- */}
+      <Testimonials />
 
       <Footer />
     </div>
   );
 }
 
-export default Careers;
+export default Reviews;
