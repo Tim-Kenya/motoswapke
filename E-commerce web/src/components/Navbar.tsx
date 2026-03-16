@@ -32,17 +32,15 @@ const Navbar = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           
-          {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer">
-            <Link to="/">
-              <div className="bg-orange-600 p-2 rounded-lg">
-                <CarFront className="h-6 w-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold text-gray-900">
-                MotoSwap<span className="text-orange-600">KE</span>
-              </span>
-            </Link>
-          </div>
+          {/* Logo - Fixed: moved flex classes to Link, added flex-shrink-0 and whitespace-nowrap */}
+          <Link to="/" className="flex items-center gap-2">
+            <div className="bg-orange-600 p-2 rounded-lg flex-shrink-0">
+              <CarFront className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-2xl font-bold text-gray-900 whitespace-nowrap">
+              MotoSwap<span className="text-orange-600">KE</span>
+            </span>
+          </Link>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
@@ -112,6 +110,7 @@ const Navbar = ({
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-100 shadow-lg">
           <div className="px-4 pt-2 pb-6 space-y-2">
+            {/* Mobile Links */}
             {navLinks.map((item) => (
               <Link 
                 key={item} 
