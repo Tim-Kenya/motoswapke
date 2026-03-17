@@ -1,5 +1,7 @@
 import React from "react";
 import { Tag, ChevronRight, UserIcon, Calendar, Clock } from "lucide-react";
+import porsche911 from "../assets/porsche911.jfif";
+import tvs from "../assets/tvs.jfif";
 
 const blogPosts = [
   {
@@ -16,7 +18,7 @@ const blogPosts = [
     id: 2,
     title: "How to Price Your Vehicle for a Quick Sale in Nairobi",
     excerpt: "Data-driven strategies to attract serious buyers without undervaluing your vehicle.",
-    image: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=800",
+    image: porsche911,
     category: "Selling Guide",
     author: "Sarah Wanjiku",
     date: "Feb 28, 2026",
@@ -26,7 +28,7 @@ const blogPosts = [
     id: 3,
     title: "Bajaj Boxer vs. TVS Raider: Which Delivery Vehicle Wins in 2026?",
     excerpt: "We compare fuel efficiency, maintenance costs, and resale value for Kenya's top delivery vehicles.",
-    image: "https://images.unsplash.com/photo-1622185135505-2d795043906a?auto=format&fit=crop&q=80&w=800",
+    image: tvs,
     category: "Industry News",
     author: "James Ochieng",
     date: "Feb 20, 2026",

@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { User as AuthUser } from "@auth0/auth0-react";
 import { ChevronDown } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import VehicleCard from "../components/VehicleCard";
+import tlc200Image from "../assets/tlc200.jfif"; 
+import c200 from "../assets/c200.jpeg";
+import crown from "../assets/crown.jfif";
+import porsche911 from "../assets/porsche911.jfif";
+
 
 interface BuyProps {
   isAuthenticated: boolean;
@@ -16,22 +21,22 @@ interface BuyProps {
 const featuredVehicles = [
   {
     id: 1,
-    title: "Yamaha MT-07 (2021)",
-    price: "KSh 850,000",
+    title: "Landcruiser TLC 200",
+    price: "KSh 8,000,000",
     location: "Nairobi, Westlands",
-    image: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800  ",
+    image: tlc200Image,
     condition: "Used",
     mileage: "12,000 km",
     year: 2021,
-    transmission: "Manual",
+    transmission: "Automatic",
     liked: false
   },
   {
     id: 2,
-    title: "Honda CB500F",
-    price: "KSh 720,000",
+    title: "Benz c-200",
+    price: "KSh 3,000,000",
     location: "Mombasa",
-    image: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=800  ",
+    image: c200,
     condition: "Used",
     mileage: "8,500 km",
     year: 2020,
@@ -40,22 +45,22 @@ const featuredVehicles = [
   },
   {
     id: 3,
-    title: "Bajaj Boxer BM 150",
-    price: "KSh 180,000",
+    title: "Crown Athlete",
+    price: "KSh 2,800,000",
     location: "Kisumu",
-    image: "https://images.unsplash.com/photo-1622185135505-2d795043906a?auto=format&fit=crop&q=80&w=800  ",
+    image: crown,
     condition: "New",
     mileage: "0 km",
     year: 2024,
-    transmission: "Manual",
+    transmission: "Automatic",
     liked: false
   },
   {
     id: 4,
-    title: "Kawasaki Ninja 400",
-    price: "KSh 950,000",
+    title: "911 turbo s",
+    price: "KSh 30,950,000",
     location: "Nairobi, Kilimani",
-    image: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&q=80&w=800  ",
+    image: porsche911,
     condition: "Used",
     mileage: "5,200 km",
     year: 2022,

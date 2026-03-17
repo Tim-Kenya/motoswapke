@@ -10,6 +10,7 @@ import HowItWorks from './pages/HowItWorks';
 import About from './pages/About';
 import Careers from './pages/Careers';
 import Blog from './pages/Blog';
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const {
@@ -92,6 +93,12 @@ function App() {
         <Route 
           path="/blog" 
           element={<Blog {...authProps} />} 
+        />
+
+        {/* Dashboard Page (Protected) */}
+        <Route 
+          path="/dashboard" 
+          element={<Dashboard {...authProps} />} 
         />
         
         {/* 404 Fallback Route */}

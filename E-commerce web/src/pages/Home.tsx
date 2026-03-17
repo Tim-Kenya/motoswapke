@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import { User as AuthUser } from "@auth0/auth0-react";
 import { ChevronDown } from "lucide-react";
 import Navbar from "../components/Navbar";

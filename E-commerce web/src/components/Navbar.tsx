@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { CarFront, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { CarFront, Menu, X, User } from "lucide-react";
 import { User as AuthUser } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const Navbar = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           
-          {/* Logo - Fixed: moved flex classes to Link, added flex-shrink-0 and whitespace-nowrap */}
+          {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <div className="bg-orange-600 p-2 rounded-lg flex-shrink-0">
               <CarFront className="h-6 w-6 text-white" />
@@ -60,7 +60,16 @@ const Navbar = ({
           <div className="hidden md:flex items-center gap-3">
             {isAuthenticated ? (
               <>
-                <span className="text-sm text-gray-600">
+                {/* ✅ Dashboard Link - Only shows when logged in */}
+                <Link 
+                  to="/dashboard"
+                  className="flex items-center gap-2 text-gray-600 hover:text-orange-600 px-3 py-2 rounded-lg hover:bg-gray-100 transition"
+                >
+                  <User className="w-4 h-4" />
+                  <span className="text-sm font-medium">Dashboard</span>
+                </Link>
+                
+                <span className="text-sm text-gray-600 hidden lg:block">
                   {user?.name || user?.email}
                 </span>
                 <button 
@@ -126,6 +135,16 @@ const Navbar = ({
             <div className="border-t border-gray-100 mt-4 pt-4 space-y-3">
               {isAuthenticated ? (
                 <>
+                  {/* ✅ Dashboard Link - Mobile */}
+                  <Link 
+                    to="/dashboard"
+                    className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-orange-600 font-medium rounded-md hover:bg-gray-50"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    <User className="w-4 h-4" />
+                    Dashboard
+                  </Link>
+                  
                   <div className="px-3 text-sm text-gray-600 font-medium">
                     {user?.name || user?.email}
                   </div>

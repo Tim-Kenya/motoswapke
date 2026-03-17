@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Search, MapPin, ChevronDown, Zap } from "lucide-react";
 
 interface HeroProps {
